@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website with Scrolling Pages</title>
+
+    <style>
+        /* General Styling */
+        body, html {
+             {
+    background: linear-gradient(45deg, #ff7e5f, #feb47b); /* Warm gradient */
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Ensure it covers the full viewport height */
+}
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: linear-gradient(45deg, #0074D9, #7FDBFF, #39CCCC); /* Blue cocktail gradient */
+    color: white;
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        header .logo {
+            margin-left: 20px;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        header nav ul {
+            list-style-type: none;
+            margin-right: 20px;
+            display: flex;
+        }
+
+        header nav ul li {
+            margin-left: 20px;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+         /* Home Page */
+#home {
+    height: 100vh;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.slider {
+    width: 100%;
+    height: 100%; /* Ensure it takes the full height of the section */
+    display: flex;
+    overflow: hidden;
+    position: relative;
+}
+
+.slides {
+    display: flex;
+    width: 100%;
+    transition: transform 1s ease;
+}
+
+.slides img {
+    width: 100%; /* Make the image take the full width of the container */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* Caption */
+.caption {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    color: white;
+}
+
+
+        /* Plan Page */
+        #plan, #history, #event, #hostel {
+            padding: 50px;
+            height: 100vh;
+            background-color: #eef2f3;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .plan-container, .history-container, .event-container, .hostel-container {
+            display: flex;
+             height: 100vh;
+            justify-content: space-around;
+            margin-top: 30px;
+        }
+
+        .plan, .history-item, .event-item, .hostel-item {
+            width: 30%;
+             background: linear-gradient(45deg, #0074D9, #7FDBFF, #39CCCC); /* Blue cocktail gradient */
+    color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .plan h3, .history-item h3, .event-item h3, .hostel-item h3 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .plan p, .history-item p, .event-item p, .hostel-item p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        /* Contact Page */
+        #contact {
+            padding: 50px;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        #contact h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        #feedback-form {
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        #feedback-form label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        #feedback-form input,
+        #feedback-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        #feedback-form button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        #feedback-form button:hover {
+            background-color: #555;
+        }
+
+        .caption {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+        }
+              /* Styling for the image inside each section */
+.section-image {
+    width: 100%;
+    height: auto; /* Maintain the aspect ratio */
+    margin-top: 20px; /* Add space above the image */
+    border-radius: 8px; /* Optional: Add rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add shadow to the image */
+}
+.welcome-text {
+    position: absolute;
+    top: 90%;
+    left: 25%;
+    transform: translate(-50%, -50%); /* Center the text horizontally and vertically */
+    color: white;
+    font-size: 64px;
+    font-weight: bold;
+    text-align: center; /* Center the text */
+    z-index: 2; /* Ensure the text appears above the slider */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional: Adds shadow for better readability */
+}
+.image-source {
+    text-align: center;
+    font-size: 12px;
+    color: #666; /* Color of the source text */
+    margin-top: 5px; /* Space between image and source text */
+
+
+.booking-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.booking-btn:hover {
+    background-color: #0056b3;
+}
+
+    </style>
+
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">Berlin Tourist </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#plan">Plans</a></li>
+                <li><a href="#history">History</a></li>
+                <li><a href="#event">Events</a></li>
+                <li><a href="#hostel">Hotels</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Home Page (Slider) -->
+    <section id="home">
+        <div class="slider">
+            <div class="slides">
+                 <div class="welcome-text">Welcome to Berlin</div>
+                <img src="C:\Users\Riya Pandya H\OneDrive\Desktop\Arnav\project all\pandit rajjev\jan file\project 2\my website\photo/photo1.jpeg" alt="Slide 1">
+                 
+                <img src="C:\Users\Riya Pandya H\OneDrive\Desktop\Arnav\project all\pandit rajjev\jan file\project 2\my website\photo/photo2.jpeg" alt="Slide 2">
+                <img src="C:\Users\Riya Pandya H\OneDrive\Desktop\Arnav\project all\pandit rajjev\jan file\project 2\my website\photo/photo3.jpeg" alt="Slide 3">
+                 <img src="C:\Users\Riya Pandya H\OneDrive\Desktop\Arnav\project all\pandit rajjev\jan file\project 2\my website\photo/photo4.jpeg" alt="Slide 4">
+                  <img src="C:\Users\Riya Pandya H\OneDrive\Desktop\Arnav\project all\pandit rajjev\jan file\project 2\my website\photo/photo5.jpeg" alt="Slide 5">
+            </div>
+        </div>
+    </section>
+
+    <!-- Plan Page -->
+    <section id="plan">
+        <h2>Our Plans</h2>
+        <div class="plan-container">
+            <div class="plan">
+                <h3>Standard Plan  </h3>
+                <p>Details of Standard Plan</p>
+                   <p><strong>Stay:</strong> 2 nights in a clean 3-star hotel with all the modern comforts. </p>
+        <p><strong>Tour:</strong> Half-day city tour to take you around the top most popular sites of Berlin</p>
+        <p><strong>Food:</strong> Daily breakfast included in the hotel and Lunch and Dinner in the nearby restaurants offering regional cuisine. </p>
+           <p><strong>Price:</strong> $299 per person   </p>
+            <p><strong>Perfect for:</strong>Tourists seeking a budget friendly yet luxurious device. </p>
+
+                 
+                 <button class="booking-btn" onclick="bookPlan('Premium Plan')">Book Now</button>
+            </div>
+            <div class="plan">
+                <h3>Premium Plan  </h3>
+                <p>Details of Premium Plan </p>
+                 <p><strong>Stay:</strong>4-nights in spacious 4 star hotel, daily breakfast included.  </p>
+        <p><strong>Tour:</strong> A full day sightseeing tour of the major landmarks of the city with visits to some of the most historic buildings. </p>
+        <p><strong>Food:</strong> Every meal covered in restaurants that are specially selected with one exclusive gourmet dinner.  </p>
+           <p><strong>Price:</strong> $599 per person    </p>
+            <p><strong>Perfect for:</strong>Someone who wants something a little more comfortful.  </p>
+                 <button class="booking-btn" onclick="bookPlan('Premium Plan')">Book Now</button>
+            </div>
+            <div class="plan">
+                <h3>VIP Plan  </h3>
+                <p>Details of VIP Plan</p>
+                 <p><strong>Stay:</strong>5-nights in 5 stars hotel, top facilities and personal service, including daily breakfast.  </p>
+        <p><strong>Tour:</strong>Customized private city tour with VIP access to privileged locations and activities. </p>
+        <p><strong>Food:</strong> All meals are at city’s finest restaurants, private gourmet food tasting included.  </p>
+           <p><strong>Price:</strong> $999 per person     </p>
+            <p><strong>Perfect for:</strong>: Travellers who are looking for exclusive lodging, private tours, and gourmet food. </p>
+                 <button class="booking-btn" onclick="bookPlan('Premium Plan')">Book Now</button>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- History Page -->
+    <section id="history">
+        <h2>History</h2>
+        <div class="history-container">
+            <div class="history-item">
+                <h3>The Berlin Wall</h3>
+                  <img src="C:\Users\Riya Pandya H\OneDrive\Desktop\Arnav\project all\pandit rajjev\jan file\project 2\my website\history\. Berlin Wall Memorial (Gedenkstätte Berliner Mauer)/download (1).jpeg"History Image 2" class="section-image">
+                 <div class="image-source">Image from www.visitberlin.de</div>
+                <p><strong>Description:</strong> The Berlin Wall Memorial is an original portion of the Berlin Wall, which divided East and West Berlin. There is an exhibition of the history of the wall and how it affected Berliners. 
+The Wall Symbolises the Cold War, the German divvy and freedom Symbolism: Berlin Wall symbolises the Cold War, Germany’s secession. The memorial is also a site where the country was split and later reunited.</p>
+            </div>
+            <div class="history-item">
+                <h3>Brandenburg Gate</h3>
+                  <img src="C:\Users\Riya Pandya H\OneDrive\Desktop\Arnav\project all\pandit rajjev\jan file\project 2\my website\history\Brandenburg Gate (Berliner Tor)/download.jpeg"History Image 2" class="section-image">
+                   <div class="image-source">Image from www.istockphoto.com</div>
+
+                <p><strong>Description: </strong>Brandenburg Gate was one of the most famous monuments in Berlin, and the 18th century designed it as a monument to peace. It was a Cold War flashpoint at the border between East and West Berlin. It became an emblem of German unification following the 1989 fall of the Berlin Wall.
+Historical Importance: The gate was occupied by historical events such as the years of the Berlin Wall and Germany’s unification.</p>
+            </div>
+            <div class="history-item">
+                <h3>Checkpoint Charlie</h3>
+                  <img src="C:\Users\Riya Pandya H\OneDrive\Desktop\Arnav\project all\pandit rajjev\jan file\project 2\my website\history\Checkpoint Charlie/download.jpeg"History Image 2" class="section-image">
+                 <div class="image-source">Image from www.orte-der-einheit.de</div>
+                <p><strong>Description:</strong> Checkpoint Charlie was one of the most famous Cold War borders between East and West Berlin. It was a monument to the partition of the city and the confrontation between Soviet and US forces. 
+Historical Value: The checkpoint was a site of political drama, most prominently in the Berlin Crisis of 1961, and is a popular tourist site with a museum devoted to the Berlin Wall and escape attempts.</p>
+            </div>
+             <div class="history-item">
+                <h3>. Holocaust Memorial </h3>
+                  <img src="C:\Users\Riya Pandya H\OneDrive\Desktop\Arnav\project all\pandit rajjev\jan file\project 2\my website\history\Holocaust Memorial (Memorial to the Murdered Jews of Europe)/download.jpeg"History Image 2" class="section-image">
+                    <div class="image-source">Image from www.theolinstudio.com</div>
+                <p><strong>Description:</strong> The moving monument is made of 2,711 concrete slabs of different heights representing the colossal death toll of the Holocaust. It’s close to the Brandenburg Gate and the Reichstag. 
+Historic Importance: The Holocaust Memorial is a solemn monument to Nazi horrors and memorial to the Holocaust.</p>
+            </div>
+             <div class="history-item">
+                <h3>parliament building of Germany</h3>
+                   <img src="C:\Users\Riya Pandya H\OneDrive\Desktop\Arnav\project all\pandit rajjev\jan file\project 2\my website\history\Reichstag Building/download (2).jpeg"History Image 2" class="section-image">
+                  <div class="image-source">Image from en.wikipedia.org</div>
+                <p><strong>Description:</strong> Reichstag (late 19th century) is the parliament building of Germany (Bundestag). It was badly destroyed in the fire of 1933 and subsequently rebuilt. Today, it has a glass dome with views of Berlin. 
+Historical Notes: The Reichstag sits at the heart of German politics and is a site of the rise of the Nazi party and the German unification.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Page -->
+    <section id="event">
+        <h2>Events</h2>
+        <div class="event-container">
+            <div class="event-item">
+                <h3>Festival of Lights</h3>
+                  <img src="C:\Users\Riya Pandya H\OneDrive\Desktop\Arnav\project all\pandit rajjev\jan file\project 2\my website\event\Festival of Lights Berlin website/download (1).jpeg"Event Image 2" class="section-image">
+                  <div class="image-source">Image from festival-of-lights.d</div>
+                <p><strong>When:</strong> October  
+<strong>What Tourists See:</strong> This is one of the most popular festivals in Berlin where all the landmarks in Berlin like Brandenburg Gate, Berlin Cathedral and TV Tower are bathed in beautiful light effects and projections. 
+<strong>Tourist Experience:</strong> Wander around the city during the night, witness the marvellous light shows and get the distinct atmosphere of Berlin’s old quarter.</p>
+            </div>
+            <div class="event-item">
+                <h3>Berlin International Film Festival </h3>
+                 <img src="C:\Users\Riya Pandya H\OneDrive\Desktop\Arnav\project all\pandit rajjev\jan file\project 2\my website\event\Getty Images Berlinale Search/fiml.jpg"Event Image 2" class="section-image">
+                 <div class="image-source">Image from https://www.gettyimages.de/</div>
+                <p><strong>When:</strong> February  
+Tourists Come To Berlin: As one of the most renowned film festivals in the world, Berlinale annually brings the biggest names in film, celebrities and film fans to Berlin. It shows international premieres of the best of international film, and audiences can attend screenings, red-carpet celebrations and discussions. 
+<strong>Tourist Attraction:</strong> Watch top movies, meet the professionals, glamour parties and screenings.</p>
+            </div>
+            <div class="event-item">
+                <h3>Berlin Marathon</h3>
+                   <img src="C:\Users\Riya Pandya H\OneDrive\Desktop\Arnav\project all\pandit rajjev\jan file\project 2\my website\event\Berlin Marathon/images.jpeg"Event Image 2" class="section-image">
+                   <div class="image-source">Image from www.scc-berlin.de</div>
+                <p><strong>When:</strong> Late September  
+<strong>Why Tourists Go:</strong> It is one of the most famous marathons in the world with tens of thousands of runners coming from all over the world. The race is famous for its flat, fast course and is an ideal event for elites as well as amateurs. 
+<strong>Tourist Activity:</strong> Take part in the race, watch from the sideline or feel the excitement of the event among thousands of crowd. The marathon itself is very party-like with musical entertainment and festivities.</p>
+            </div>
+             <div class="event-item">
+                <h3>Carnival of Cultures </h3>
+                   <img src="C:\Users\Riya Pandya H\OneDrive\Desktop\Arnav\project all\pandit rajjev\jan file\project 2\my website\event\Carnival of Cultures (Karneval der Kulturen)/images (1).jpeg"Event Image 2" class="section-image">
+                    <div class="image-source">Image from www.visitberlin.de</div>
+                <p><strong>When:</strong> June  
+<strong>Reasons Tourists Go: </strong>A multicultural street festival in Berlin celebrating Berlin’s variety. There is a massive procession of costumes, songs and performances from all across the world. 
+<strong>Tourist Tour:</strong> Visit the parade, have International food, visit various music and shows all over the weekend.</p>
+            </div>
+             <div class="event-item">
+                <h3>Christmas Markets </h3>
+                   <img src="C:\Users\Riya Pandya H\OneDrive\Desktop\Arnav\project all\pandit rajjev\jan file\project 2\my website\event\Christmas Markets (Weihnachtsmärkte)/images.jpeg"Event Image 2" class="section-image">
+                     <div class="image-source">Image from www.reiseland-niedersachsen.de</div>
+                <p><strong>When:</strong> Late November to December  
+The Tourist’s Reason For Coming: Berlin’s Christmas markets are famous all over the world, and you will find magical decorations, crafts, food, and more at the markets in Berlin. The markets that sell most are Gendarmenmarkt and Charlottenburg Palace. 
+<strong>Tourist Attraction:</strong> Come for the warm winter atmosphere, souvenir shopping, and taste winter eats such as mulled wine (Glühwein), roast chestnuts, Christmas cookies.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hostel Page -->
+    <section id="hostel">
+        <h2>Hotels</h2>
+        <div class="hostel-container">
+            <div class="hostel-item">
+                <h3>Hotel Adlon Kempinski Berlin</h3>
+                    <img src="C:\Users\Riya Pandya H\OneDrive\Desktop\Arnav\project all\pandit rajjev\jan file\project 2\my website\hotel\Hotel Adlon Kempinski Berlin/download (1).jpeg"HOTEL Image 2" class="section-image">
+                       <div class="image-source">Image from www.m-tours.de</div>
+                        <p><strong>Where:</strong> Unter den Linden, Brandenburg Gate (near Brandenburg Gate). 
+<strong>Information:</strong> One of Berlin’s grandest hotels, the Hotel Adlon Kempinski is an old palace where politicians, celebrities and princes have all stayed. It has five star service, spa, fine cuisine. 
+<strong>Cost:</strong> €300 - €1,200 night (depends on the room category and season)</p>
+            </div>
+            <div class="hostel-item">
+                <h3>The Ritz-Carlton, Berlin</h3>
+                  <img src="C:\Users\Riya Pandya H\OneDrive\Desktop\Arnav\project all\pandit rajjev\jan file\project 2\my website\hotel\The Ritz-Carlton, Berlin/images.jpeg"HOTEL Image 2" class="section-image">
+                   <div class="image-source">Image from petervonstamm-travelblog.com</div>
+                <p><strong>Location:</strong> Potsdamer Platz  
+<strong>Info: </strong>It is well known for luxury, but The Ritz-Carlton has the right blend of modern luxury and traditional European style. It has an enviable spa, a Michelin restaurant and spacious rooms in grand style. 
+<strong>Prices:</strong> €350 - €1,000/night</p>
+            </div>
+            <div class="hostel-item">
+                <h3>Hotel de Rome</h3>
+                   <img src="C:\Users\Riya Pandya H\OneDrive\Desktop\Arnav\project all\pandit rajjev\jan file\project 2\my website\hotel\Hotel de Rome/images.jpeg"HOTEL Image 2" class="section-image">
+                        <div class="image-source">Image from www.holidaycheck.de</div>
+                <p><strong>Location:</strong> Bebelplatz, Mitte  
+<strong>Information:</strong> Hotel de Rome is an old bank building that merges the historic and the luxurious. There’s an amazing rooftop terrace, a large pool, and a marble staircase in the hotel. 
+<strong>Budget:</strong> €250-€800 per night.Price: €250,00-€800.00</p>
+            </div>
+             <div class="hostel-item">
+                <h3>SO/ Berlin Das Stue</h3>
+                  <img src="C:\Users\Riya Pandya H\OneDrive\Desktop\Arnav\project all\pandit rajjev\jan file\project 2\my website\hotel\SO Berlin Das Stue/download (1).jpeg"HOTEL Image 2" class="section-image">
+                       <div class="image-source">Image from https://www.so-berlin-das-stue.com/</div>
+                <p><strong>Location:</strong> Next to Berlin Zoo and Tiergarten. 
+<strong>Details:</strong> Modern design hotel, a mix of high-end luxury and classical decor. It’s set in an old royal residence and has chic rooms, a Michelin-starred restaurant and a spa. 
+<strong>Average Cost:</strong> €200 - €600 per night</p>
+            </div>
+             <div class="hostel-item">
+                <h3>Motel One Berlin</h3>
+                 <img src="C:\Users\Riya Pandya H\OneDrive\Desktop\Arnav\project all\pandit rajjev\jan file\project 2\my website\hotel\Motel One Berlin-Alexanderplatz/download (3).jpeg"HOTEL Image 2" class="section-image">
+                    <div class="image-source">Image from www.motel-one.com</div>
+                <p><strong>Location:</strong> Alexanderplatz  
+<strong>Info:</strong> A budget friendly alternative, Motel One has spacious and trendy rooms at a reasonable rate. It’s right in the middle of most of Berlin’s best sites and very cheap. 
+<strong>Cost:</strong> €100-€200 / Night Price Banding (nadals): €200-€200/night. 
+They are affordable hotels that are great for any budget, from 5 star hotels to budget yet modern hotels that is a favourite among Berliners.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Page -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form id="feedback-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="feedback">Feedback:</label>
+            <textarea id="feedback" name="feedback" required></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <script>
+        // Slider functionality for the Home page
+        let slideIndex = 0;
+
+        function showSlides() {
+            let slides = document.querySelectorAll(".slides img");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            slides[slideIndex-1].style.display = "block";  
+            setTimeout(showSlides, 2000); // Change image every 2 seconds
+        }
+
+        showSlides();
+
+        // Smooth Scroll for navigation
+        document.querySelectorAll('a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
